@@ -114,10 +114,22 @@ func globalCases(cmd *cobra.Command, args []string) error {
 var RootCmd = &cobra.Command{
 	Use:   "covid",
 	Short: "Brings covid19 stats from the comfort of your terminal",
-	Long: `You can also add country name after covid
-		Example :
-		covid <country>
-		covid India
+	Long: `Covid is easy to use CLI tool for live covid stats.
+	
+	Run:
+	> covid - Get Global count.
+
+	Subcommands
+	> covid full - Get Top counts by active cases
+	> covid <country> - Get stats for input country
+
+	Example :
+	covid India
+	+--------+-------+--------+-----------+--------+
+	| REGION | CASES | ACTIVE | RECOVERED | DEATHS |
+	+--------+-------+--------+-----------+--------+
+	| India  |  1251 |   1117 |       102 |     32 |
+	+--------+-------+--------+-----------+--------+
 	`,
 	// Run : func(cmd *cobra.Command, args []string) {	}
 	RunE: globalCases,
@@ -133,7 +145,6 @@ func Execute() {
 }
 
 func init() {
-	RootCmd.PersistentFlags().String("lang", "en", "language to use")
-	RootCmd.Flags().String("format", "table", "What format to print output")
-	RootCmd.Flags().Int("limit", 50, "How many results to show when format is table. Does not apply to json. Minimum value is 1.")
+	RootCmd.Flags().String("format", "table", "Format for displaying output. Options are Table and Json")
+	RootCmd.Flags().Int("limit", 50, "Limit results to display for command <covid full>. Only applicable for table format. Minimum value is 1.")
 }
