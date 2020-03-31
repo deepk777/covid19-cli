@@ -1,6 +1,8 @@
 # covid19-cli
 Started as a weekend project, It is a Command Line Tool to get details of stats on Covid cases. 
 
+[![Go Report Card](https://goreportcard.com/badge/github.com/deepk777/covid19-cli?style=flat-square)](https://goreportcard.com/badge/github.com/deepk777/covid19-cli)
+
 **Table of Contents**
 
 - [Installing](#installing)

@@ -14,13 +14,15 @@ import (
 )
 
 const (
-	COVID_ALL     = "https://corona.lmao.ninja/all"
-	COVID_COUNTRY = "https://corona.lmao.ninja/countries/"
+	// CovidAll is API for global stats
+	CovidAll = "https://corona.lmao.ninja/all"
+	// CovidCountry is API for country wise stats
+	CovidCountry = "https://corona.lmao.ninja/countries/"
 )
 
 // CovidCases represents total Covid cases across all countries
 type CovidCases struct {
-	Region   string `json:"country,omitempty"`
+	Region    string `json:"country,omitempty"`
 	Cases     int    `json:"cases"`
 	Active    int    `json:"active"`
 	Recovered int    `json:"recovered"`
@@ -53,15 +55,15 @@ func displayData(format string, data []CovidCases, limit int) error {
 		t.Style().Title.Align = text.AlignCenter
 		configs := []table.ColumnConfig{}
 		configs = append(configs, table.ColumnConfig{
-			Number:5, 
+			Number: 5,
 			Colors: text.Colors{text.FgHiRed, text.BgBlack},
 		})
 		configs = append(configs, table.ColumnConfig{
-			Number:4, 
+			Number: 4,
 			Colors: text.Colors{text.FgHiGreen, text.BgBlack},
 		})
 		configs = append(configs, table.ColumnConfig{
-			Number:3, 
+			Number: 3,
 			Colors: text.Colors{text.FgHiYellow, text.BgBlack},
 		})
 		t.SetColumnConfigs(configs)
@@ -72,13 +74,13 @@ func displayData(format string, data []CovidCases, limit int) error {
 
 func globalCases(cmd *cobra.Command, args []string) error {
 
-	covidAPI := COVID_ALL
+	covidAPI := CovidAll
 	if len(args) > 0 {
 		value := args[0]
 		if value == "full" {
-			covidAPI = COVID_COUNTRY + "?sort=cases"
+			covidAPI = CovidCountry + "?sort=cases"
 		} else {
-			covidAPI = COVID_COUNTRY + value
+			covidAPI = CovidCountry + value
 		}
 	}
 
